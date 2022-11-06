@@ -8,11 +8,20 @@ import bodyParser from 'body-parser';
 
 const app: Application = express();
 
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
-
+app.use((req:Request, res:Response, next: NextFunction)=>{
+   res.setHeader("X-Star", new Date().toString());
+   next();
+})
 
 app.post("/formulario",async(req,res)=>{
+
+    const datos = {
+        body: req.body,
+        param : req.query
+    }
+    res.setHeader("X-End", new Date().toString());
     res.send(JSON.stringify(req.body))
 
 
