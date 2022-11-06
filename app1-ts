@@ -1,0 +1,22 @@
+import express, {Application,Request, Response} from 'express'
+
+import bodyParser from 'body-parser';
+
+// a=22&b=22
+// {a:1,b:22}
+
+
+const app: Application = express();
+
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json());
+
+
+app.post("/formulario",async(req,res)=>{
+    res.send(JSON.stringify(req.body))
+
+
+app.get("/", async(req:Request, res:Response) => {
+    res.send("HOLA A TODOS")
+})
+app.listen(4444)
